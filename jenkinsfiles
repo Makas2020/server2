@@ -1,0 +1,18 @@
+node {
+defmavenHome =tool "maven3"
+
+stage('checkout) {
+checkout scm
+}
+
+
+stage('build') {
+sh "$(Mavenhome)/bin/var clean install -f MyWebApp pom.xml"
+}
+
+stage ('code quality scan'){
+WITHSONARQUBE('sonarqube') {
+sh "$(Mavenhome)/bin/var sonar:sonar -f MyWebApp pom.xml"
+ }
+}
+}
